@@ -21,6 +21,12 @@ Start by declaring the member variables this object will need:
   export var speed = 400  # How fast the player will move (pixels/sec).
   var screen_size  # Size of the game window.
 
+.. code:: javascript
+
+    function whatever() {
+        return "such color"
+    }
+
 
 Using the ``export`` keyword on the first variable ``speed`` allows us to
 set its value in the Inspector. This can be handy for values that you
