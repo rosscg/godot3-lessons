@@ -14,7 +14,7 @@ click "Create":
 
 Start by declaring the member variables this object will need:
 
-.. code-block:: gdscript GDScript
+.. code-block:: GDScript
 
   extends Area2D
 
