@@ -13,7 +13,8 @@ click "Create":
 .. image:: img/attach_node_window.png
 
 We can now view the script, which has been filled out with a template already.
-Lines beginning with a hash symbol (#) are 'comments' and are ignored by Godot.
+Lines beginning with a hash symbol (``#``) are 'comments' and are ignored by
+Godot.
 
 The first line ``extends Area2D`` brings in all the settings of an Area2D
 object, we can ignore this for now.
@@ -128,7 +129,7 @@ Now we can multiply the velocity by this speed value.
 
 Finally, we can add a check for whether the player is moving so we can start
 or stop the AnimatedSprite animation. Remember the velocity is set to 0 at the
-beginning of each frame (each time _process() runs) so velocity will be 0
+beginning of each frame (each time ``_process()`` runs) so velocity will be 0
 unless a key is being pressed.
 
 .. code-block:: GDScript
@@ -197,7 +198,7 @@ function.
       screen_size = get_viewport_rect().size
 
 Then we can update our ``_process()`` function to force the ``position`` to be
-within these boundaries using clamp():
+within these boundaries using ``clamp()``:
 
 .. code-block:: GDScript
 
@@ -207,9 +208,10 @@ within these boundaries using clamp():
 
 In the above code, clamp returns a value based on the following logic:
 ``clamp(value_to_consider, minimum_value_acceptable, maximum_value_acceptable)``
-Therefore if the position.x is between 0 and 480, clamp() will return position.x,
-if it is smaller than 0, clamp() will return 0, and if it is higher, clamp() will
-return 480. Thus we cannot set the position of our character outside the window.
+Therefore if the ``position.x`` is between 0 and 480, ``clamp()`` will return
+``position.x``, if it is smaller than 0, ``clamp()`` will return 0, and if it
+is higher, ``clamp()`` will return 480. Thus we cannot set the position of our
+character outside the window.
 
 Click "Play Scene" (``F6``) and confirm you can move the player
 around the screen in all directions.
