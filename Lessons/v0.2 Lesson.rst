@@ -41,6 +41,13 @@ We can detect whether a key is pressed using
 ``Input.is_action_pressed()``, which returns ``true`` if it is pressed
 or ``false`` if it isn't. We add the key into the command.
 
+
+.. code-block:: python
+  func _process(delta):
+    if Input.is_action_pressed("ui_right"):
+        print("right key pressed")
+
+
 .. code-block:: GDScript
   func _process(delta):
     if Input.is_action_pressed("ui_right"):
