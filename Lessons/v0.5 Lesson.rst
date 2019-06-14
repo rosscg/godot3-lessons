@@ -1,0 +1,176 @@
+
+Main scene
+----------
+
+Now it's time to bring it all together. Create a new scene and add a
+Node named ``Main``. Click the "Instance" button and select your
+saved ``Player.tscn``. This is adding an instance (copy) of your player scene
+to the main scene. We can also do this programatically (as we will with the
+mobs).
+
+.. image:: img/instance_scene.png
+
+Now, add the following nodes as children of ``Main``, and name them as
+shown (values are in seconds):
+
+-  Timer (named ``MobTimer``) - to control how often mobs spawn
+-  Timer (named ``ScoreTimer``) - to increment the score every second
+-  Timer (named ``StartTimer``) - to give a delay before starting
+
+Set the ``Wait Time`` property of each of the ``Timer`` nodes as
+follows:
+
+-  ``MobTimer``: ``0.5``
+-  ``ScoreTimer``: ``1``
+-  ``StartTimer``: ``2``
+
+In addition, set the ``One Shot`` property of ``StartTimer`` to "On". This will
+cause it to run once, rather than repeatedly on a loop.
+
+Spawning mobs
+~~~~~~~~~~~~~
+
+The Main node will be spawning new mobs, and we want them to appear at a
+random location on the edge of the screen. Add a Path2D node named
+``MobPath`` as a child of ``Main``. When you select ``Path2D``,
+you will see some new buttons at the top of the editor:
+
+.. image:: img/path2d_buttons.png
+
+Select the middle one ("Add Point") and draw the path by clicking to add
+the points at the corners shown. To have the points snap to the grid, make sure
+"Snap to Grid" is checked. This option can be found under the "Snapping options"
+button to the left of the "Lock" button, appearing as a series of three
+vertical dots.
+
+.. image:: img/draw_path2d.gif
+
+Draw the path in *clockwise* order, or your mobs will spawn pointing *outwards*
+instead of *inwards*!
+
+After placing point ``4`` in the image, click the "Close Curve" button and
+your curve will be complete.
+
+Now that the path is defined, add a PathFollow2D node as a child of ``MobPath``
+and name it ``MobSpawnLocation``. This node will automatically rotate and
+follow the path as it moves, like a car, so we can tell it to travel a random
+distance along the path, then ask it to tell us where it is, and use that
+position as the point at which to spawn the mob.
+
+Main script
+~~~~~~~~~~~
+
+Add a script to ``Main``. At the top of the script, we use
+``export (PackedScene) var Mob`` to allow us to choose the Mob scene we want to
+instance -- we are declaring a new variable, Mob, of the type (PackedScene)
+which refers to another scene we have already created. The variable is exported
+so we can define it from the inspector.
+
+We also declare the score variable and run ``randomize()`` at startup, which
+generates a new random seed each time the game is run.
+
+.. code-block:: GDScript
+  extends Node
+
+  export (PackedScene) var Mob
+  var score
+
+  func _ready():
+    randomize()
+
+
+Drag ``Mob.tscn`` from the "FileSystem" panel and drop it in the
+``Mob`` property under the Script Variables of the ``Main`` node.
+
+Next, click on the Player and connect the ``hit`` signal. We want to make a
+new function named ``game_over``, which will handle what needs to happen when a
+game ends. Type "game_over" in the "Method In Node" box at the bottom of the
+"Connecting Signal" window. Add the following code, which will stop
+``ScoreTimer`` timer increasing, and stop ``MobTimer``, which is what will spawn
+new mobs, when the player object tells the main scene that it has been hit.
+
+.. code-block:: GDScript
+  func game_over():
+    $ScoreTimer.stop()
+    $MobTimer.stop()
+
+Now we create a function to start a new game. We set the score to 0, tell the
+player object to run its start function (which we defined earlier), then run
+the ``StartTimer``, which will count down for two seconds then start the mobs
+spawning.
+
+.. code-block:: GDScript
+  func new_game():
+    score = 0
+    $Player.start()
+    $StartTimer.start()
+
+    .. code-block:: GDScript
+      extends Node
+
+      export (PackedScene) var Mob
+      var score
+
+Add the new_game function to _ready().
+
+.. code-block:: GDScript
+  func _ready():
+    randomize()
+    new_game()
+
+Timer nodes have a signal called ``timeout()``, which is what will tell the
+game that the timer has completed. So now we connect the ``timeout()`` signal
+of each of the Timer nodes (``StartTimer``, ``ScoreTimer``, and ``MobTimer``)
+to the main script. ``StartTimer`` will start the other two timers.
+``ScoreTimer`` will increment the score by 1. Remember that we set
+``StartTimer`` to run once (one shot) whereas the others continue to repeat and
+send signals each time they expire.
+
+.. code-block:: GDScript
+  func _on_StartTimer_timeout():
+    $MobTimer.start()
+    $ScoreTimer.start()
+
+  func _on_ScoreTimer_timeout():
+    score += 1
+
+In ``_on_MobTimer_timeout()``, we will create a mob instance, pick a
+random starting location along the ``Path2D``, and set the mob in
+motion. The ``PathFollow2D`` node will automatically rotate as it
+follows the path, so we will use that to select the mob's direction as
+well as its position.
+
+Note that a new instance must be added to the scene using
+``add_child()``.
+
+Now click on ``MobTimer`` in the scene window then head to inspector window,
+switch to node view then click on ``timeout()`` and connect the signal.
+
+Add the following code:
+
+.. code-block:: GDScript
+  func _on_MobTimer_timeout():
+    # Choose a random location on Path2D.
+    $MobPath/MobSpawnLocation.set_offset(randi())
+    # Create a Mob instance and add it to the scene.
+    var mob = Mob.instance()
+    add_child(mob)
+    # Set the mob's direction perpendicular to the path direction.
+    var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
+    # Set the mob's position to a random location.
+    mob.position = $MobPath/MobSpawnLocation.position
+    # Add some randomness to the direction.
+    direction += rand_range(-PI / 4, PI / 4)
+    mob.rotation = direction
+    # Set the velocity (speed & direction).
+    mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
+    mob.linear_velocity = mob.linear_velocity.rotated(direction)
+
+
+Note: In functions requiring angles, GDScript uses *radians*, not degrees. If
+you're more comfortable working with degrees, you'll need to use the
+``deg2rad()`` and ``rad2deg()`` functions to convert between the two.
+
+
+The game should now run. You may need to change the main scene from Player.tscn
+to Main.tscn in Project -> Project Settings -> Application -> Run -> Main Scene
