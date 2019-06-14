@@ -67,6 +67,7 @@ choose between them later. Make sure they are spelled the same as in the
 AnimatedSprite node.
 
 .. code-block:: GDScript
+
   extends RigidBody2D
 
   export var min_speed = 150  # Minimum speed range.
@@ -77,6 +78,7 @@ Now let's look at the rest of the script. In ``_ready()`` we randomly
 choose one of the three animation types:
 
 .. code-block:: GDScript
+
   func _ready():
     $AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
 
@@ -90,6 +92,7 @@ screen. Connect the ``screen_exited()`` signal of the ``Visibility``
 node to the Mob script, and add this code:
 
 .. code-block:: GDScript
+
   func _on_Visibility_screen_exited():
     queue_free()
 

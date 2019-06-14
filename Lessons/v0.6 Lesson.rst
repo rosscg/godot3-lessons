@@ -78,6 +78,7 @@ StartButton
 Now add this script to ``HUD``:
 
 .. code-block:: GDScript
+
   extends CanvasLayer
 
   signal start_game
@@ -86,6 +87,7 @@ The ``start_game`` signal tells the ``Main`` node that the button
 has been pressed.
 
 .. code-block:: GDScript
+
   func show_message(text):
     $MessageLabel.text = text
     $MessageLabel.show()
@@ -96,6 +98,7 @@ temporarily, such as "Get Ready". On the ``MessageTimer``, set the
 ``Wait Time`` to ``2`` and set the ``One Shot`` property to "On".
 
 .. code-block:: GDScript
+
   func show_game_over():
     show_message("Game Over")
     yield($MessageTimer, "timeout")
@@ -108,6 +111,7 @@ Over" for 2 seconds, then return to the title screen and show the "Start"
 button.
 
 .. code-block:: GDScript
+
   func update_score(score):
     $ScoreLabel.text = str(score)
 
@@ -117,6 +121,7 @@ Connect the ``timeout()`` signal of ``MessageTimer`` and the
 ``pressed()`` signal of ``StartButton``.
 
 .. code-block:: GDScript
+
   func _on_MessageTimer_timeout():
     $MessageLabel.hide()
 
@@ -146,18 +151,21 @@ In ``new_game()``, update the score display and show the "Get Ready"
 message:
 
 .. code-block:: GDScript
+
   $HUD.update_score(score)
   $HUD.show_message("Get Ready")
 
 In ``game_over()`` we need to call the corresponding ``HUD`` function:
 
 .. code-block:: GDScript
+
   $HUD.show_game_over()
 
 Finally, add this to ``_on_ScoreTimer_timeout()`` to keep the display in
 sync with the changing score:
 
 .. code-block:: GDScript
+
   $HUD.update_score(score)
 
 Now you're ready to play! Click the "Play the Project" button. You will

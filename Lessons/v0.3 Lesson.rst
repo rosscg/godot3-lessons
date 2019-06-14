@@ -10,6 +10,7 @@ flipped vertically with ``flip_v`` for downward movement.
 Let's place this code at the end of our ``_process()`` function:
 
 .. code-block:: GDScript
+
   if velocity.x < 0:
     $AnimatedSprite.flip_h = true
   else:
@@ -24,6 +25,7 @@ or down (in this implementation, diagonal movement will use the "right"
 animation).
 
 .. code-block:: GDScript
+
   if velocity.x != 0:
       $AnimatedSprite.animation = "right"
   elif velocity.y != 0:
@@ -38,6 +40,7 @@ add this line to ``_ready()``, so the player will be hidden when the game
 starts:
 
 .. code-block:: GDScript
+
   hide()
 
 
@@ -51,6 +54,7 @@ made any enemies yet! That's OK, because we're going to use Godot's
 Add the following at the top of the script, after ``extends Area2d``:
 
 .. code-block:: GDScript
+
   signal hit
 
 This defines a custom signal called "hit" that we will have our player
@@ -76,6 +80,7 @@ signal is emitted (i.e. whenever the player is hit).
 Add this code to the function:
 
 .. code-block:: GDScript
+
   func _on_Player_body_entered(body):
       hide()  # Player disappears after being hit.
       emit_signal("hit")  # Player tells the game it has been hit.
@@ -90,6 +95,7 @@ collision processing. Using ``call_deferred()`` allows us to have Godot wait to
 disable the shape until it's safe to do so.
 
 .. code-block:: GDScript
+
   func _on_Player_body_entered(body):
       hide()  # Player disappears after being hit.
       emit_signal("hit")  # Player tells the game it has been hit.
@@ -100,6 +106,7 @@ starting a new game. We show the player, move them to the middle of the screen
 and turn their CollisionShape2D on.
 
 .. code-block:: GDScript
+
   func start():
       position.x = screen_size.x / 2
       position.y = screen_size.y / 2
