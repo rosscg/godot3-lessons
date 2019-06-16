@@ -108,13 +108,6 @@ spawning.
     $Player.start()
     $StartTimer.start()
 
-    .. code-block:: GDScript
-
-      extends Node
-
-      export (PackedScene) var Mob
-      var score
-
 Add the new_game function to _ready().
 
 .. code-block:: GDScript

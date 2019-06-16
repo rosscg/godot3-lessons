@@ -30,8 +30,9 @@ animation).
       $AnimatedSprite.animation = "right"
   elif velocity.y != 0:
       $AnimatedSprite.animation = "up"
-	$AnimatedSprite.flip_h = velocity.x < 0
-	$AnimatedSprite.flip_v = velocity.y > 0
+      
+  $AnimatedSprite.flip_h = velocity.x < 0
+  $AnimatedSprite.flip_v = velocity.y > 0
 
 
 Play the scene again and check that the animations are correct in each
