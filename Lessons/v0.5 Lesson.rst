@@ -2,16 +2,8 @@
 Main scene
 ----------
 
-Now it's time to bring it all together. Create a new scene and add a
-Node named ``Main``. Click the "Instance" button and select your
-saved ``Player.tscn``. This is adding an instance (copy) of your player scene
-to the main scene. We can also do this programatically (as we will with the
-mobs).
-
-.. image:: img/instance_scene.png
-
-Now, add the following nodes as children of ``Main``, and name them as
-shown (values are in seconds):
+Now it's time to bring it all together. Navigate back to the Main scene, add the
+following nodes as children of ``Main``, and name them as shown (values are in seconds):
 
 -  Timer (named ``MobTimer``) - to control how often mobs spawn
 -  Timer (named ``ScoreTimer``) - to increment the score every second
@@ -71,7 +63,7 @@ generates a new random seed each time the game is run.
 
 .. code-block:: GDScript
 
-  extends Node
+  extends Node2D
 
   export (PackedScene) var Mob
   var score
@@ -83,12 +75,13 @@ generates a new random seed each time the game is run.
 Drag ``Mob.tscn`` from the "FileSystem" panel and drop it in the
 ``Mob`` property under the Script Variables of the ``Main`` node.
 
-Next, click on the Player and connect the ``hit`` signal. We want to make a
-new function named ``game_over``, which will handle what needs to happen when a
-game ends. Type "game_over" in the "Method In Node" box at the bottom of the
-"Connecting Signal" window. Add the following code, which will stop
-``ScoreTimer`` timer increasing, and stop ``MobTimer``, which is what will spawn
-new mobs, when the player object tells the main scene that it has been hit.
+Next, click on the Player node and connect the ``hit`` signal by selecting the
+Node tab on the right side as before. We want to make a new function named
+``game_over``, which will handle what needs to happen when a game ends. Type
+"game_over" in the "Method In Node" box at the bottom of the "Connecting Signal"
+window. Add the following code, which will stop ``ScoreTimer`` timer increasing,
+and stop ``MobTimer``, which is what will spawn new mobs, when the player object
+tells the main scene that it has been hit.
 
 .. code-block:: GDScript
 

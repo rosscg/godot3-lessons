@@ -1,5 +1,5 @@
 # Godot3 Lesson Plan
-A structured lesson plan for the Godot3 tutorial project [available here.](https://docs.godotengine.org/en/3.0/getting_started/step_by_step/your_first_game.html)
+A structured lesson plan for the Godot3 tutorial project [available here.](https://docs.godotengine.org/en/3.3/getting_started/step_by_step/your_first_game.html)
 
 **Students will develop a working game which they will have the skills to build upon in the future.**
 
@@ -13,6 +13,6 @@ The class is expected to take between 3-5 hours in total. The course is designed
 
 ### Software Requirements ###
 
-Each student machine will need [Godot3](https://godotengine.org/download/osx) installed.
+Each student machine will need [Godot3](https://downloads.tuxfamily.org/godotengine/3.3.3/) installed.
 They will also need the art assets saved locally. These are contained in a zip file in the first lesson folder.
-This class was designed using Godot 3.0.6
+This class was designed using Godot 3.3.3

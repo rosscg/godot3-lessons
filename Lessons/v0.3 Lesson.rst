@@ -17,7 +17,7 @@ Let's place this code at the end of our ``_process()`` function:
     $AnimatedSprite.flip_h = false
 
 When we use an expression such as ``velocity.x < 0``, the returned value will
-either be ``true`` or ```false``. Therefore, we can streamline the above code
+either be ``true`` or ``false``. Therefore, we can streamline the above code
 into a single line as: ``$AnimatedSprite.flip_h = velocity.x < 0``
 Finally, we want to choose the correct animation from the set we created
 earlier -- "right" if we're moving left or right, and "up" if we're moving up
@@ -30,7 +30,7 @@ animation).
       $AnimatedSprite.animation = "right"
   elif velocity.y != 0:
       $AnimatedSprite.animation = "up"
-      
+
   $AnimatedSprite.flip_h = velocity.x < 0
   $AnimatedSprite.flip_v = velocity.y > 0
 

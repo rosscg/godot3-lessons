@@ -3,7 +3,7 @@
 Your first game
 ===============
 
-Adapted from source: https://docs.godotengine.org/en/3.1/getting_started/step_by_step/your_first_game.html
+Adapted from source: https://docs.godotengine.org/en/3.3/getting_started/step_by_step/your_first_game.html
 
 Overview
 --------
@@ -34,6 +34,13 @@ the screen.
 This game will use portrait mode, so we need to adjust the size of the
 game window. Click on Project -> Project Settings -> Display -> Window and
 set "Width" to ``480`` and "Height" to ``720``.
+
+Create a "2D Scene" root node using the button on the left hand side. You will
+see the node in the scene window on the left. Rename it from "Node2D" to "Main".
+This will be the main game area. You can now run the game by pressing the play
+button in the top right corner. When asked to select a main scene, choose the
+scene you just created. The game will then launch in a new window. Naturally, it
+will be a blank grey window for now. We will add to it soon.
 
 Nodes and Scenes
 ----------------
@@ -96,10 +103,10 @@ before we've created other parts of the game.
 Node structure
 ~~~~~~~~~~~~~~
 
-To begin, click the "Add/Create a New Node" button and add an Area2D
-node to the scene.
+To begin, select "New Scene" from the "Scene" menu. Again, we need to create a
+root node, but this time choose "Other Node" and search for Area2D.
 
-.. image:: img/add_node.png
+.. image:: img/add_root_node.png
 
 With ``Area2D`` we can detect objects that overlap or run into the player.
 Change its name to ``Player`` by clicking on the node's name.
@@ -160,5 +167,19 @@ the sprite:
 When you're finished, your ``Player`` scene should look like this:
 
 .. image:: img/player_scene_nodes.png
+
+Finally, we can add the ``Player`` scene to the ``Main`` game scene. Select the ``Main``
+scene from the tabs at the top of the screen to go back to the main scene and
+click on the ``Main`` node in the left panel. To add the ``Player`` scene as a node
+under the ``Main`` node, select the icon that looks like a chain and is called
+"Instance Child Scene". Select the ``Player`` scene and it will now appear as a
+child of the ``Main`` node.
+
+.. image:: img/instance_scene.png
+
+The player sprite should now appear in the top corner of the game window. Don't
+worry about the positioning yet. Try running the game again using the play button
+to confirm the sprite now appears in the corner. In the next section, we will add
+movement to the character.
 
 Remember to save your project.

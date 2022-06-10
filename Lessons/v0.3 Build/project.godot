@@ -6,18 +6,22 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=3
+config_version=4
 
 [application]
 
-config/name="Dodge the Creeps"
-run/main_scene="res://Player.tscn"
+config/name="DodgeTheCreeps"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=480
-window/size/borderless=true
+window/size/height=720
+
+[physics]
+
+common/enable_pause_aware_picking=true
 
 [rendering]
 

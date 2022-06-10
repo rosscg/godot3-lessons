@@ -2,8 +2,8 @@ Moving the player
 ~~~~~~~~~~~~~~~~~
 
 Now we need to add some functionality that we can't get from a built-in
-node, so we'll add a script. Click the ``Player`` node and click the
-"Add Script" button:
+node, so we'll add a script. Navigate back to the Player scene, click the
+``Player`` node and click the"Add Script" button:
 
 .. image:: img/add_script_button.png
 
