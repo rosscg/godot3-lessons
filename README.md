@@ -1,5 +1,5 @@
-# Godot3 Lesson Plan
-A structured lesson plan for the Godot3 tutorial project [available here.](https://docs.godotengine.org/en/3.3/getting_started/step_by_step/your_first_game.html)
+# Godot 3 Lesson Plan
+A structured lesson plan for the Godot 3 tutorial project [available here.](https://docs.godotengine.org/en/3.3/getting_started/step_by_step/your_first_game.html)
 
 **Students will develop a working game which they will have the skills to build upon in the future.**
 
@@ -13,6 +13,24 @@ The class is expected to take between 3-5 hours in total. The course is designed
 
 ### Software Requirements ###
 
-Each student machine will need [Godot3](https://downloads.tuxfamily.org/godotengine/3.3.3/) installed.
-They will also need the art assets saved locally. These are contained in a zip file in the first lesson folder.
-This class was designed using Godot 3.3.3
+Each student machine will need [Godot 3](https://godotengine.org/download/archive/) installed.
+
+They will also need the art assets saved locally. These are contained in a zip file in the /Lessons/files directory.
+
+This class was designed using Godot 3.3.3 and has been tested up to 3.5.2
+
+### Short Format ###
+For shorter sessions running for ~2 hours, an alternative lesson plan is included in /Lessons/ShortFormat/ see the enclosed README for details.
+
+
+### Common Issues ###
+Some common issues and mistakes encountered when running this course for classes aged ~17:
+
+- ``Input.is_action_just_pressed()`` instead of ``Input.is_action_pressed()``
+- If nodes are not names correctly (including capitalisation) later steps may fail.
+- Elements within the Player/Mob scene may be moved away from the origin, making everything offset when they're added to the main scene.
+
+
+- Importance of indentation
+- Importance of code grammar, spelling, spaces
+- Correct nesting within the Godot node hierarchy
