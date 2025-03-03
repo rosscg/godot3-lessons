@@ -34,7 +34,7 @@ the Player scene.
 
 In the RigidBody2D properties, set ``Gravity Scale`` to ``0``, so
 the mob will not fall downward. In addition, under the
-``PhysicsBody2D`` section, click the ``Mask`` property and
+``CollisionObject2D`` section (previously called ``PhysicsBody2D``), click the ``Mask`` property and
 uncheck the first box. This will ensure the mobs do not collide with each other.
 
 .. image:: img/set_collision_mask.png

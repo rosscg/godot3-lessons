@@ -53,6 +53,6 @@ to start the game.
 
 ToDo:
 ~~~~~~~~~~~~~~~~~
-Despawn mobs on death
-Stop score proceeding after fast game over -- see original build
-Power ups
+- Despawn mobs on death
+- Stop score proceeding after fast game over -- see original build
+- Power-ups
